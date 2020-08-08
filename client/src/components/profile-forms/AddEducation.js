@@ -1,18 +1,18 @@
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addEducation } from '../../actions/profile';
+import React, { Fragment, useState } from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addEducation } from "../../actions/profile";
 
 const AddEducation = ({ addEducation, history }) => {
   const [formData, setFormData] = useState({
-    school: '',
-    degree: '',
-    fieldofstudy: '',
-    from: '',
-    to: '',
-    current: 'false',
-    description: '',
+    school: "",
+    degree: "",
+    fieldofstudy: "",
+    from: "",
+    to: "",
+    current: "false",
+    description: "",
   });
 
   const {
@@ -25,7 +25,7 @@ const AddEducation = ({ addEducation, history }) => {
     description,
   } = formData;
 
-  const onChange = (e) =>
+  const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
@@ -38,7 +38,7 @@ const AddEducation = ({ addEducation, history }) => {
       <small>* = required field</small>
       <form
         className='form'
-        onSubmit={(e) => {
+        onSubmit={e => {
           e.preventDefault();
           addEducation(formData, history);
         }}
@@ -86,8 +86,8 @@ const AddEducation = ({ addEducation, history }) => {
               onChange={() => {
                 setFormData({ ...formData, current: !current });
               }}
-            />{' '}
-            Current Job
+            />{" "}
+            Current School
           </p>
         </div>
         <div className='form-group'>
@@ -123,4 +123,4 @@ AddEducation.propTypes = {
   addEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addEducation })(AddEducation);
+export default connect(null, { addEducation })(withRouter(AddEducation));
